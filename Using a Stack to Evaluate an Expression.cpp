@@ -51,17 +51,39 @@ class stack{
 	}
 };
 
-int prec(char c)
+int prec(char x)
 {
-    if(c == '*' || c == '/')
+    if(x == '*' || x == '/')
     return 2;
-    else if(c == '+' || c == '-')
+    else if(x == '+' || x == '-')
     return 1;
     else
     return -1;
 }
 
 int main(){
-	
-	
+	stack ms;
+	int p_kata,hasil;
+	string a,p;
+	cout<<"Input Bentuk Infix : ";
+	getline(cin,a);
+	p_kata=a.length();
+	for (int i=0;i<p_kata;i++){
+		if (a[i] >= '0' && a[i] <= '9'){
+			p+=a[i];
+		}
+		else if (a[i] ==  '('){
+			ms.push(a[i]);
+		}
+		else if (a[i] == ')'){
+			while (ms.IsEmpty() != true && ms.Top() != '('){
+				char tmp=ms.Top();
+				ms.pop();
+				p+=tmp;
+			}
+			if (ms.Top() == '('){
+				ms.pop();
+			}
+		}
+	}
 }
